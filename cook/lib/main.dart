@@ -9,7 +9,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp();
+    return const MaterialApp(
+      home: HomePage(),
+      debugShowCheckedModeBanner: false,
+    );
   }
 }
 
@@ -23,6 +26,13 @@ class HomePage extends StatefulWidget {
 class _HomePage extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return const Scaffold(
+      body: TextField(
+        decoration: InputDecoration(
+            labelText: "레시피 제목을 입력해주세요",
+            labelStyle: TextStyle(fontSize: 20, color: Colors.amber),
+            hintText: "아잉"),
+      ),
+    );
   }
 }
