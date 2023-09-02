@@ -2,5 +2,5 @@ flutter_native_splash:
   color: "#FFFFFF"
   image: assets/splash.png
   text: "수동적인 요리사"
-  android: true
+  font: assets/fonts/COOKIERUN_REGULAR.OTF
   fullscreen: true

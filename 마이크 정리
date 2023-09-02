@@ -1,0 +1,27 @@
+마이크 정리
+
+StatelessWidget 와 StatefulWidget , State까지 사용
+
+state의 시작 전 
+ bool _hasSpeech = false; <= setstate 설정
+  final bool _logEvents = false;
+  double level = 0.0;
+  double minSoundLevel = 50000000000000000;   <= 값이 높을수록 작은 소리도 인식
+  double maxSoundLevel = -50000;   <= 값이 클수록 작은 소리도 인식
+  String lastWords = '';
+  String lastError = '';
+  String lastStatus = '';
+  String _currentLocaleId = '';
+  List<LocaleName> _localeNames = [];
+  final SpeechToText speech = SpeechToText();
+
+   다음과 같은 변수 초기화
+
+
+
+
+   _logEvent 메서드 => 현재시간과 말한걸 텍스트로 출력
+
+
+
+  build의 Column 부터 출력을 담당

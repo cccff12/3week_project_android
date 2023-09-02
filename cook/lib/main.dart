@@ -1,3 +1,4 @@
+import 'package:cook/stt2.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,8 +11,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: HomePage(),
       debugShowCheckedModeBanner: false,
+      home: SttPage(),
     );
   }
 }
@@ -26,9 +27,8 @@ class HomePage extends StatefulWidget {
 class _HomePage extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
     return Scaffold(
-      appBar: AppBar(title: const Text("앱 바 타이틀")),
+      appBar: AppBar(title: const Text("앱 바 타이틀 . 물론 타이틀은 안넣을거다")),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -46,18 +46,10 @@ class _HomePage extends State<HomePage> {
               decoration: InputDecoration(
                   labelText: "레시피 제목을 입력해주세요",
                   labelStyle: TextStyle(fontSize: 20, color: Colors.amber),
-                  hintText: "아잉"),
+                  hintText: "입력하세용"),
             ),
           ],
         ),
-=======
-    return const Scaffold(
-      body: TextField(
-        decoration: InputDecoration(
-            labelText: "레시피 제목을 입력해주세요",
-            labelStyle: TextStyle(fontSize: 20, color: Colors.amber),
-            hintText: "아잉"),
->>>>>>> b7f80c5be55dd6c249dba87fc1c0aa40e4966a3a
       ),
     );
   }
