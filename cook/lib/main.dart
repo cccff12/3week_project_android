@@ -33,20 +33,25 @@ class _HomePage extends State<HomePage> {
         title: Center(
           // 글자마다 색을 다르게 주기 위해 RichText를 사용했고
           //그 안에서 TextSpan을 2번 사용했다
-          child: RichText(
-              text: const TextSpan(children: [
-            TextSpan(
-              text: "요리",
-              style: TextStyle(color: Colors.yellow, fontSize: 23),
-            ),
-            TextSpan(
-              text: "를 시작해보세요",
-              style: TextStyle(
-                fontSize: 23,
-                color: Colors.black,
+          child: Container(
+            // padding줬어야 했는데 Center안에 padding을 넣을 수 없어
+            // Container로 묶고 그 안에 패딩을 줌
+            padding: const EdgeInsets.only(right: 120),
+            child: RichText(
+                text: const TextSpan(children: [
+              TextSpan(
+                text: "요리",
+                style: TextStyle(color: Colors.yellow, fontSize: 15),
               ),
-            ),
-          ])),
+              TextSpan(
+                text: "를 시작해보세요",
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.black,
+                ),
+              ),
+            ])),
+          ),
         ),
 
         // app var그림자 진거 제거
@@ -76,14 +81,14 @@ class _HomePage extends State<HomePage> {
             end: Alignment.bottomCenter,
           ),
         ),
-        child: const Padding(
+        child: Padding(
           // 왼 위 오 아래 순
-          padding: EdgeInsets.fromLTRB(50, 10, 50, 0),
+          padding: const EdgeInsets.fromLTRB(50, 10, 50, 0),
           child: Column(
             children: [
               Column(
                 children: [
-                  TextField(
+                  const TextField(
                     decoration: InputDecoration(
                       // textfiled 배경색 지정
                       border: OutlineInputBorder(
@@ -94,11 +99,59 @@ class _HomePage extends State<HomePage> {
                       labelText: "레시피 제목을 입력해주세요",
                       labelStyle: TextStyle(fontSize: 15, color: Colors.amber),
                       hintText: "입력하세용",
-                      // 클릭했을 때 아웃라인지정
-                      // focusedBorder: OutlineInputBorder(
-                      //   borderSide: BorderSide(width: 1, color: Colors.black),
-                      // ),
                     ),
+                  ),
+
+                  // 사각형 앱 이미지들
+                  // Row로 2개씩 묶었음
+                  Row(
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.all(30),
+                        child: Row(
+                          children: [
+                            Row(
+                              children: [
+                                // 아이콘 위에 2개
+                                Image.asset('images/Group21.png'),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.all(30),
+                        child: Row(
+                          children: [
+                            // 아이콘 아래 2개
+                            Image.asset('images/Group22.png'),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+// 두번째로 Row로 사각형 앱 이미지 묶음
+                  Row(
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.all(30),
+                        child: Row(
+                          children: [
+                            // 아이콘 아래 2개
+                            Image.asset('images/Group23.png'),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        margin: const EdgeInsets.all(30),
+                        child: Row(
+                          children: [
+                            // 아이콘 아래 2개
+                            Image.asset('images/Group24.png'),
+                          ],
+                        ),
+                      )
+                    ],
                   ),
                 ],
               ),
