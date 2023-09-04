@@ -11,9 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: HomePage(),
-    );
+        debugShowCheckedModeBanner: false, home: SttPage());
   }
 }
 
@@ -104,31 +102,33 @@ class _HomePage extends State<HomePage> {
 
                   // 사각형 앱 이미지들
                   // Row로 2개씩 묶었음
-                  Row(
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.all(30),
-                        child: Row(
-                          children: [
-                            Row(
-                              children: [
-                                // 아이콘 위에 2개
-                                Image.asset('images/Group21.png'),
-                              ],
-                            ),
-                          ],
+                  Center(
+                    child: Row(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.all(30),
+                          child: Row(
+                            children: [
+                              Row(
+                                children: [
+                                  // 아이콘 위에 2개
+                                  Image.asset('images/Group21.png'),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.all(30),
-                        child: Row(
-                          children: [
-                            // 아이콘 아래 2개
-                            Image.asset('images/Group22.png'),
-                          ],
+                        Container(
+                          margin: const EdgeInsets.all(30),
+                          child: Row(
+                            children: [
+                              // 아이콘 아래 2개
+                              Image.asset('images/Group22.png'),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
 // 두번째로 Row로 사각형 앱 이미지 묶음
                   Row(
