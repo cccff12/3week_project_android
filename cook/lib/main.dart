@@ -1,4 +1,6 @@
+import 'package:cook/stt.dart';
 import 'package:cook/stt2.dart';
+import 'package:cook/tts2.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,7 +14,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SttPage(),
+      home: HomePage(),
+      // home: TestView(),
+      // home: SttPage(),
     );
   }
 }
@@ -41,12 +45,12 @@ class _HomePage extends State<HomePage> {
                 text: const TextSpan(children: [
               TextSpan(
                 text: "요리",
-                style: TextStyle(color: Colors.yellow, fontSize: 15),
+                style: TextStyle(color: Colors.yellow, fontSize: 20),
               ),
               TextSpan(
                 text: "를 시작해보세요",
                 style: TextStyle(
-                  fontSize: 15,
+                  fontSize: 20,
                   color: Colors.black,
                 ),
               ),
@@ -98,7 +102,7 @@ class _HomePage extends State<HomePage> {
                       fillColor: Colors.white,
                       labelText: "레시피 제목을 입력해주세요",
                       labelStyle: TextStyle(fontSize: 15, color: Colors.amber),
-                      hintText: "입력하세용",
+                      hintText: "입력하세요 ㅠㅠㅠㅠㅠ",
                     ),
                   ),
 
@@ -106,6 +110,7 @@ class _HomePage extends State<HomePage> {
                   // Row로 2개씩 묶었음
                   Center(
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
                           margin: const EdgeInsets.all(30),
@@ -133,27 +138,30 @@ class _HomePage extends State<HomePage> {
                     ),
                   ),
 // 두번째로 Row로 사각형 앱 이미지 묶음
-                  Row(
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.all(30),
-                        child: Row(
-                          children: [
-                            // 아이콘 아래 2개
-                            Image.asset('images/Group23.png'),
-                          ],
+                  Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.all(30),
+                          child: Row(
+                            children: [
+                              // 아이콘 아래 2개
+                              Image.asset('images/Group23.png'),
+                            ],
+                          ),
                         ),
-                      ),
-                      Container(
-                        margin: const EdgeInsets.all(30),
-                        child: Row(
-                          children: [
-                            // 아이콘 아래 2개
-                            Image.asset('images/Group24.png'),
-                          ],
-                        ),
-                      )
-                    ],
+                        Container(
+                          margin: const EdgeInsets.all(30),
+                          child: Row(
+                            children: [
+                              // 아이콘 아래 2개
+                              Image.asset('images/Group24.png'),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ],
               ),
