@@ -1,6 +1,8 @@
-import 'package:cook/stt.dart';
-import 'package:cook/stt2.dart';
-import 'package:cook/tts2.dart';
+import 'package:cook/main_drawer.dart';
+import 'package:cook/stt/stt.dart';
+import 'package:cook/stt/stt2.dart';
+import 'package:cook/stt/stt3.dart';
+import 'package:cook/tts/tts2.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,7 +16,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      // home: SttPage3(),
+
+      // HomePage(),
       // home: TestView(),
       // home: SttPage(),
     );
@@ -62,18 +66,7 @@ class _HomePage extends State<HomePage> {
         elevation: 0,
       ),
       // navigation 버튼
-      drawer: Drawer(
-        child: ListView(
-          children: const [
-            UserAccountsDrawerHeader(
-              accountName: Text("유저이름"),
-              accountEmail: Text("유저 레벨"),
-              // 이부분은 나중에 추가해야 함
-              currentAccountPicture: CircleAvatar(),
-            )
-          ],
-        ),
-      ),
+      drawer: maindrawer(context),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
