@@ -1,8 +1,8 @@
+import 'package:cook/imagelink/category.dart';
+import 'package:cook/imagelink/cooking_utensil.dart';
+import 'package:cook/imagelink/create_recipe.dart';
+import 'package:cook/imagelink/materialsearch.dart';
 import 'package:cook/main_drawer.dart';
-import 'package:cook/stt/stt.dart';
-import 'package:cook/stt/stt2.dart';
-import 'package:cook/stt/stt3.dart';
-import 'package:cook/tts/tts2.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,10 +15,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      // routes: {"/category": (context) => const Category()},
       debugShowCheckedModeBanner: false,
       // home: SttPage3(),
-
-      // HomePage(),
+      home: HomePage(),
       // home: TestView(),
       // home: SttPage(),
     );
@@ -67,98 +67,155 @@ class _HomePage extends State<HomePage> {
       ),
       // navigation 버튼
       drawer: maindrawer(context),
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color.fromRGBO(255, 192, 203, 1),
-              Color.fromRGBO(243, 243, 131, 1),
-            ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
+      // ******* textfield focus를 off하기 위해 body를 감쌌다
+      // 문제 생기면 바로 지우자 *******
+      body: GestureDetector(
+        onTap: () {
+          FocusManager.instance.primaryFocus?.unfocus();
+        },
+        child: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color.fromRGBO(255, 192, 203, 1),
+                Color.fromRGBO(243, 243, 131, 1),
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
           ),
-        ),
-        child: Padding(
-          // 왼 위 오 아래 순
-          padding: const EdgeInsets.fromLTRB(50, 10, 50, 0),
-          child: Column(
-            children: [
-              Column(
-                children: [
-                  const TextField(
-                    decoration: InputDecoration(
-                      // textfiled 배경색 지정
-                      border: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(width: 1, color: Colors.white)),
-                      filled: true,
-                      fillColor: Colors.white,
-                      labelText: "레시피 제목을 입력해주세요",
-                      labelStyle: TextStyle(fontSize: 15, color: Colors.amber),
-                      hintText: "입력하세요 ㅠㅠㅠㅠㅠ",
+          child: Padding(
+            // 왼 위 오 아래 순
+            padding: const EdgeInsets.fromLTRB(50, 30, 50, 0),
+            child: Column(
+              children: [
+                Column(
+                  children: [
+                    const TextField(
+                      decoration: InputDecoration(
+                        // textfiled 배경색 지정
+                        border: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(width: 1, color: Colors.white)),
+                        filled: true,
+                        fillColor: Colors.white,
+                        labelText: "레시피 제목을 입력해주세요",
+                        labelStyle:
+                            TextStyle(fontSize: 15, color: Colors.amber),
+                        hintText: "입력하세요 ㅠㅠㅠㅠㅠ",
+                      ),
                     ),
-                  ),
+                    // 사각형 앱 이미지들
+                    // Row로 2개씩 묶었음
 
-                  // 사각형 앱 이미지들
-                  // Row로 2개씩 묶었음
-                  Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    Column(
                       children: [
-                        Container(
-                          margin: const EdgeInsets.all(30),
+                        const Padding(padding: EdgeInsets.all(10)),
+                        Center(
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Row(
-                                children: [
-                                  // 아이콘 위에 2개
-                                  Image.asset('images/Group21.png'),
-                                ],
+                              Container(
+                                margin: const EdgeInsets.all(30),
+                                child: Column(
+                                  children: [
+                                    InkWell(
+                                        onTap: () {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const Category()));
+                                        },
+                                        child:
+                                            Image.asset('images/Group21.png')),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    const Text("카테고리"),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                margin: const EdgeInsets.all(30),
+                                child: Column(
+                                  children: [
+                                    // 아이콘 아래 2개
+                                    InkWell(
+                                        onTap: () {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const CreateRecipe()));
+                                        },
+                                        child:
+                                            Image.asset('images/Group22.png')),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    const Text("레시피 작성"),
+                                  ],
+                                ),
                               ),
                             ],
                           ),
                         ),
-                        Container(
-                          margin: const EdgeInsets.all(30),
+
+                        // 두번째로 Row로 사각형 앱 이미지 묶음
+                        Center(
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              // 아이콘 아래 2개
-                              Image.asset('images/Group22.png'),
+                              Container(
+                                margin: const EdgeInsets.all(30),
+                                child: Column(
+                                  children: [
+                                    // 아이콘 아래 2개
+                                    InkWell(
+                                        onTap: () {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const CookingUtensil()));
+                                        },
+                                        child:
+                                            Image.asset('images/Group23.png')),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    const Text("요리기구"),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                margin: const EdgeInsets.all(30),
+                                child: Column(
+                                  children: [
+                                    // 아이콘 아래 2개
+                                    InkWell(
+                                        onTap: () {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const MaterialSearch()));
+                                        },
+                                        child:
+                                            Image.asset('images/Group24.png')),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    const Text("재료로 검색"),
+                                  ],
+                                ),
+                              )
                             ],
                           ),
                         ),
                       ],
                     ),
-                  ),
-// 두번째로 Row로 사각형 앱 이미지 묶음
-                  Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.all(30),
-                          child: Row(
-                            children: [
-                              // 아이콘 아래 2개
-                              Image.asset('images/Group23.png'),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: const EdgeInsets.all(30),
-                          child: Row(
-                            children: [
-                              // 아이콘 아래 2개
-                              Image.asset('images/Group24.png'),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
