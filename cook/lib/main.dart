@@ -37,6 +37,8 @@ class _HomePage extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        // dawer 색 변경
+        iconTheme: const IconThemeData(color: Colors.black),
         backgroundColor: const Color.fromRGBO(255, 192, 203, 1),
         title: Center(
           // 글자마다 색을 다르게 주기 위해 RichText를 사용했고
@@ -99,9 +101,9 @@ class _HomePage extends State<HomePage> {
                                 BorderSide(width: 1, color: Colors.white)),
                         filled: true,
                         fillColor: Colors.white,
-                        labelText: "레시피 제목을 입력해주세요",
+                        labelText: "레시피 검색",
                         labelStyle:
-                            TextStyle(fontSize: 15, color: Colors.amber),
+                            TextStyle(fontSize: 15, color: Colors.redAccent),
                         hintText: "입력하세요 ㅠㅠㅠㅠㅠ",
                       ),
                     ),
@@ -178,7 +180,7 @@ class _HomePage extends State<HomePage> {
                                                       const CookingUtensil()));
                                         },
                                         child:
-                                            Image.asset('images/Group23.png')),
+                                            Image.asset('images/Group24.png')),
                                     const SizedBox(
                                       height: 10,
                                     ),
@@ -199,7 +201,7 @@ class _HomePage extends State<HomePage> {
                                                       const MaterialSearch()));
                                         },
                                         child:
-                                            Image.asset('images/Group24.png')),
+                                            Image.asset('images/Group23.png')),
                                     const SizedBox(
                                       height: 10,
                                     ),
