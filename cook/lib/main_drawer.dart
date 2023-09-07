@@ -1,8 +1,8 @@
+import 'package:cook/login.dart';
 import 'package:cook/mypage.dart';
 import 'package:flutter/material.dart';
 
 Widget maindrawer(BuildContext context) => Drawer(
-  
       child: ListView(
         children: [
           const UserAccountsDrawerHeader(
@@ -16,6 +16,13 @@ Widget maindrawer(BuildContext context) => Drawer(
             onTap: () {
               Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => const MyPage()));
+            },
+          ),
+          ListTile(
+            title: const Text("로그인"),
+            onTap: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => const Login()));
             },
           ),
         ],

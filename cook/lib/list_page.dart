@@ -3,14 +3,14 @@ import 'package:cook/bagick/mybackground.dart';
 import 'package:cook/bagick/mytextfied.dart';
 import 'package:flutter/material.dart';
 
-class CookingUtensil extends StatefulWidget {
-  const CookingUtensil({super.key});
+class ListPage extends StatefulWidget {
+  const ListPage({super.key});
 
   @override
-  State<CookingUtensil> createState() => _CookingUtensilState();
+  State<ListPage> createState() => _ListPageState();
 }
 
-class _CookingUtensilState extends State<CookingUtensil> {
+class _ListPageState extends State<ListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

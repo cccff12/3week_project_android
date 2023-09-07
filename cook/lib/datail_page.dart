@@ -3,14 +3,15 @@ import 'package:cook/bagick/mybackground.dart';
 import 'package:cook/bagick/mytextfied.dart';
 import 'package:flutter/material.dart';
 
-class CookingUtensil extends StatefulWidget {
-  const CookingUtensil({super.key});
+class Detail extends StatefulWidget {
+  const Detail({super.key});
 
   @override
-  State<CookingUtensil> createState() => _CookingUtensilState();
+  State<Detail> createState() => _DetailState();
 }
 
-class _CookingUtensilState extends State<CookingUtensil> {
+//  pagecontroller로 상세 화면에서 여러 이미지 띄운거 보여주기
+class _DetailState extends State<Detail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,3 +1,6 @@
+import 'package:cook/bagick/myappbar.dart';
+import 'package:cook/bagick/mybackground.dart';
+import 'package:cook/bagick/mytextfied.dart';
 import 'package:flutter/material.dart';
 
 class MaterialSearch extends StatefulWidget {
@@ -11,8 +14,24 @@ class _MaterialSearchState extends State<MaterialSearch> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("재료로검색"),
+      appBar: MyAppBar(),
+      body: GestureDetector(
+        onTap: () {
+          FocusManager.instance.primaryFocus?.unfocus();
+        },
+        child: Container(
+          decoration: myBackgroundColor(),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(50, 30, 50, 0),
+            child: Column(children: [
+              Column(
+                children: [
+                  myTextField(),
+                ],
+              )
+            ]),
+          ),
+        ),
       ),
     );
   }
