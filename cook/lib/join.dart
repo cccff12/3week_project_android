@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cook/bagick/myappbar.dart';
 import 'package:cook/bagick/mybackground.dart';
 import 'package:cook/modules/input_form_field.dart';
@@ -70,26 +71,31 @@ class _LoginState extends State<Join> {
                     children: [
                       // 이메일 입력
                       inputFormField(
-                          controller: _emailController,
-                          setValue: (value) => _emailValue = value,
-                          hintText: "이메일을 입력해 주세요"),
-
+                        controller: _emailController,
+                        setValue: (value) => _emailValue = value,
+                        hintText: "이메일을 입력해 주세요",
+                        validator: (value) => null,
+                      ),
                       //  비밀번호 입력
                       inputFormField(
                           controller: _passwordController,
                           setValue: (value) => _passwordvalue = value,
+                          validator: (value) => null,
                           hintText: "비밀번호를 입력해주세요"),
                       inputFormField(
                           controller: _nicknameController,
                           setValue: (value) => _nicknamevalue = value,
+                          validator: (value) => null,
                           hintText: "닉네임을 입력해 주세요"),
                       inputFormField(
                           controller: _nameController,
                           setValue: (value) => _namevalue = value,
+                          validator: (value) => null,
                           hintText: "이름을 입력해 주세요"),
                       inputFormField(
                           controller: _phonenumberController,
                           setValue: (value) => _phonenumbervalue = value,
+                          validator: (value) => null,
                           hintText: "전화번호를 입력해 주세요"),
                       // 회원가입 버튼
                       const SizedBox(
@@ -125,15 +131,41 @@ class _LoginState extends State<Join> {
         onPressed: () async {
           _formKey.currentState?.validate();
 
-          try {} catch (e) {}
+          try {
+            var result =
+                await FirebaseAuth.instance.createUserWithEmailAndPassword(
+              email: _emailValue,
+              password: _passwordvalue,
+            );
 
-          var result = await FirebaseAuth.instance.signInWithEmailAndPassword(
-            email: _emailValue,
-            password: _passwordvalue,
-          );
-          // result에서 user만 뽑아서 update 하라
+            widget.updateAuthUser(result.user);
 
-          setState(() {});
+            if (result.user != null) {
+              // firebaseStore에
+              await FirebaseFirestore.instance
+                  // user 라는 컬렉션을 만들고
+                  .collection("user")
+                  // document는  uid로 만들어라
+                  .doc(result.user!.uid)
+                  .set({
+                "email": result.user!.email,
+                "name": _namevalue,
+                "tel": _phonenumbervalue,
+                "nickname": _nicknamevalue,
+                "password": _passwordvalue
+              });
+            }
+            // 다른 회원정보는 fireStore에 저장해야한다.
+            // 나중에 Dto만들어서 변경
+
+            // firebase에서 에러나면 snackbar로 보여주는 것
+          } on FirebaseException catch (e) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(e.message!),
+              ),
+            );
+          }
         },
         child: const SizedBox(
           width: double.infinity,
