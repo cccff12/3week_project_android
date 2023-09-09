@@ -1,18 +1,20 @@
 import 'package:cook/bagick/myappbar.dart';
 import 'package:cook/bagick/mybackground.dart';
 import 'package:cook/bagick/mytextfied.dart';
-import 'package:cook/firebase_options.dart';
 import 'package:cook/imagelink/category.dart';
 import 'package:cook/imagelink/cooking_utensil.dart';
 import 'package:cook/imagelink/create_recipe.dart';
 import 'package:cook/imagelink/materialsearch.dart';
 import 'package:cook/main_drawer.dart';
+import 'package:cook/firebase_options.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Firebase.initializeApp(
+  // firebase와 연결
+  await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
@@ -43,12 +45,34 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePage extends State<HomePage> {
+  late User? _authUser;
+
+// widget 초기화
+  @override
+  void initState() {
+    super.initState();
+    // login된 사용자 정보를 firebaseAuth에게 요청해 _authUser에 담음
+    _authUser = FirebaseAuth.instance.currentUser;
+  }
+
+// state는 직접 전달할 수 없고 변경함수는 전달할 수 있다
+// 그러므로 변경함수를 전달한다
+  void updateAuthUser(User? user) {
+    setState(() {
+      _authUser = user;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(),
       // navigation 버튼
-      drawer: maindrawer(context),
+      drawer: maindrawer(
+        context,
+        authUser: _authUser,
+        updateAuthUser: updateAuthUser,
+      ),
       // ******* textfield focus를 off하기 위해 body를 감쌌다
       // 문제 생기면 바로 지우자 *******
       body: GestureDetector(

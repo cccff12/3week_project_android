@@ -30,7 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_native_splash: ^1.2.0
+  flutter_native_splash: ^2.2.4
   #stt. tts 를 사용하기 위해 넣을거임
   speech_to_text: ^6.3.0
   flutter_tts: ^3.8.1
