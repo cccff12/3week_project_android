@@ -27,12 +27,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      // routes: {"/category": (context) => const Category()},
       debugShowCheckedModeBanner: false,
-      // home: SttPage3(),
       home: HomePage(),
-      // home: TestView(),
-      // home: SttPage(),
     );
   }
 }
