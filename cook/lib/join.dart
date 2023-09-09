@@ -53,62 +53,70 @@ class _LoginState extends State<Join> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: MyAppBar(),
       body: GestureDetector(
         onTap: () {
           FocusManager.instance.primaryFocus?.unfocus();
         },
-        child: Form(
-          key: _formKey,
-          child: Container(
-            decoration: myBackgroundColor(),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(50, 30, 50, 0),
-                  child: Column(
-                    children: [
-                      // 이메일 입력
-                      inputFormField(
-                        controller: _emailController,
-                        setValue: (value) => _emailValue = value,
-                        hintText: "이메일을 입력해 주세요",
-                        validator: (value) => null,
-                      ),
-                      //  비밀번호 입력
-                      inputFormField(
-                          controller: _passwordController,
-                          setValue: (value) => _passwordvalue = value,
-                          validator: (value) => null,
-                          hintText: "비밀번호를 입력해주세요"),
-                      inputFormField(
-                          controller: _nicknameController,
-                          setValue: (value) => _nicknamevalue = value,
-                          validator: (value) => null,
-                          hintText: "닉네임을 입력해 주세요"),
-                      inputFormField(
-                          controller: _nameController,
-                          setValue: (value) => _namevalue = value,
-                          validator: (value) => null,
-                          hintText: "이름을 입력해 주세요"),
-                      inputFormField(
-                          controller: _phonenumberController,
-                          setValue: (value) => _phonenumbervalue = value,
-                          validator: (value) => null,
-                          hintText: "전화번호를 입력해 주세요"),
-                      // 회원가입 버튼
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      joinButton(),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                    ],
+        child: SafeArea(
+          child: Form(
+            key: _formKey,
+            child: Container(
+              height: double.infinity,
+              // ignore: avoid_overflow
+              decoration: myBackgroundColor(),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(50, 30, 50, 0),
+                    child: Column(
+                      children: [
+                        // 이메일 입력
+                        inputFormField(
+                          controller: _emailController,
+                          setValue: (value) => _emailValue = value,
+                          hintText: "이메일을 입력해 주세요",
+                          validator: (value) => CheckValidate().emailCheck(
+                              email: _emailValue, focusNode: _emailFocus),
+                        ),
+                        //  비밀번호 입력
+                        inputFormField(
+                            controller: _passwordController,
+                            setValue: (value) => _passwordvalue = value,
+                            validator: (value) => CheckValidate().passwordCheck(
+                                password: _passwordvalue,
+                                focusNode: _passwordFocus),
+                            hintText: "비밀번호를 입력해주세요"),
+                        inputFormField(
+                            controller: _phonenumberController,
+                            setValue: (value) => _phonenumbervalue = value,
+                            validator: (value) => CheckValidate().phoneCheck(
+                                phonenum: _phonenumbervalue,
+                                focusNode: _phonenumberFocus),
+                            hintText: "전화번호를 입력해 주세요"),
+                        inputFormField(
+                            controller: _nicknameController,
+                            setValue: (value) => _nicknamevalue = value,
+                            validator: (value) => null,
+                            hintText: "닉네임을 입력해 주세요"),
+                        inputFormField(
+                            controller: _nameController,
+                            setValue: (value) => _namevalue = value,
+                            validator: (value) => null,
+                            hintText: "이름을 입력해 주세요"),
+
+                        // 회원가입 버튼
+                        const SizedBox(
+                          height: 180,
+                        ),
+                        joinButton(),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -155,6 +163,9 @@ class _LoginState extends State<Join> {
                 "nickname": _nicknamevalue,
               });
             }
+            Navigator.pop(context, result.user != null);
+            await widget.updateAuthUser(result.user);
+            Navigator.pop(context);
             // 다른 회원정보는 fireStore에 저장해야한다.
             // 나중에 Dto만들어서 변경
 

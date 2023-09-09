@@ -16,7 +16,7 @@ class CheckValidate {
       var regExp = RegExp(pattern);
       if (!regExp.hasMatch(email)) {
         focusNode.requestFocus();
-        return "이메일 형식이 잘못되었습니다";
+        return "이메일 형식대로 입력해 주세요 ㅠ ";
       }
     }
 
@@ -37,7 +37,26 @@ class CheckValidate {
       var regExp = RegExp(pattern);
       if (!regExp.hasMatch(password)) {
         focusNode.requestFocus();
-        return "숫자+문자+특수문자로 6~12자리로 입력";
+        return "숫자+문자+특수문자로 6~12자리로 입력해주세요 ㅠ ";
+      }
+    }
+
+    return "";
+  }
+
+  String phoneCheck({
+    required String phonenum,
+    required FocusNode focusNode,
+  }) {
+    if (phonenum.isEmpty) {
+      focusNode.requestFocus();
+      return "전화번호를 입력해주세요!";
+    } else {
+      const pattern = r"^\d{3}-\d{3,4}-\d{4}$/";
+      var regExp = RegExp(pattern);
+      if (!regExp.hasMatch(phonenum)) {
+        focusNode.requestFocus();
+        return "3자리-3~4자리-4자리로 입력해주세요 ㅠ";
       }
     }
 
