@@ -144,15 +144,15 @@ class _LoginState extends State<Join> {
               // firebaseStore에
               await FirebaseFirestore.instance
                   // user 라는 컬렉션을 만들고
-                  .collection("user")
+                  .collection("users")
                   // document는  uid로 만들어라
                   .doc(result.user!.uid)
                   .set({
                 "email": result.user!.email,
+                "password": _passwordvalue,
                 "name": _namevalue,
                 "tel": _phonenumbervalue,
                 "nickname": _nicknamevalue,
-                "password": _passwordvalue
               });
             }
             // 다른 회원정보는 fireStore에 저장해야한다.
