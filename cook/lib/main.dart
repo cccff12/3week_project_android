@@ -2,7 +2,6 @@ import 'package:cook/bagick/myappbar.dart';
 import 'package:cook/bagick/mybackground.dart';
 import 'package:cook/bagick/mytextfied.dart';
 import 'package:cook/imagelink/category.dart';
-import 'package:cook/imagelink/cooking_utensil.dart';
 import 'package:cook/imagelink/create_recipe.dart';
 import 'package:cook/imagelink/materialsearch.dart';
 import 'package:cook/main_drawer.dart';
@@ -10,6 +9,7 @@ import 'package:cook/firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -57,6 +57,11 @@ class _HomePage extends State<HomePage> {
     setState(() {
       _authUser = user;
     });
+  }
+
+  onButtonTap() async {
+    launchUrlString(
+        "https://msearch.shopping.naver.com/search/all?query=%EC%9A%94%EB%A6%AC%EA%B8%B0%EA%B5%AC");
   }
 
   @override
@@ -151,10 +156,12 @@ class _HomePage extends State<HomePage> {
                                     // 아이콘 아래 2개
                                     InkWell(
                                         onTap: () {
-                                          Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      const CookingUtensil()));
+                                          // Navigator.of(context).push(
+                                          //     MaterialPageRoute(
+                                          //         builder: (context) =>
+                                          //             const CookingUtensil()));
+
+                                          onButtonTap();
                                         },
                                         child:
                                             Image.asset('images/Group24.png')),

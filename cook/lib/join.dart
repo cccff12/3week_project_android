@@ -138,44 +138,45 @@ class _LoginState extends State<Join> {
         // 버튼을 누르면 textformfield의 validator실행
         onPressed: () async {
           _formKey.currentState?.validate();
+          if (_formKey.currentState?.validate() == null) {
+            try {
+              var result =
+                  await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                email: _emailValue,
+                password: _passwordvalue,
+              );
 
-          try {
-            var result =
-                await FirebaseAuth.instance.createUserWithEmailAndPassword(
-              email: _emailValue,
-              password: _passwordvalue,
-            );
+              widget.updateAuthUser(result.user);
 
-            widget.updateAuthUser(result.user);
+              if (result.user != null) {
+                // firebaseStore에
+                await FirebaseFirestore.instance
+                    // user 라는 컬렉션을 만들고
+                    .collection("users")
+                    // document는  uid로 만들어라
+                    .doc(result.user!.uid)
+                    .set({
+                  "email": result.user!.email,
+                  "password": _passwordvalue,
+                  "name": _namevalue,
+                  "tel": _phonenumbervalue,
+                  "nickname": _nicknamevalue,
+                });
+              }
+              Navigator.pop(context, result.user != null);
+              await widget.updateAuthUser(result.user);
+              Navigator.pop(context);
+              // 다른 회원정보는 fireStore에 저장해야한다.
+              // 나중에 Dto만들어서 변경
 
-            if (result.user != null) {
-              // firebaseStore에
-              await FirebaseFirestore.instance
-                  // user 라는 컬렉션을 만들고
-                  .collection("users")
-                  // document는  uid로 만들어라
-                  .doc(result.user!.uid)
-                  .set({
-                "email": result.user!.email,
-                "password": _passwordvalue,
-                "name": _namevalue,
-                "tel": _phonenumbervalue,
-                "nickname": _nicknamevalue,
-              });
+              // firebase에서 에러나면 snackbar로 보여주는 것
+            } on FirebaseException catch (e) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(e.message!),
+                ),
+              );
             }
-            Navigator.pop(context, result.user != null);
-            await widget.updateAuthUser(result.user);
-            Navigator.pop(context);
-            // 다른 회원정보는 fireStore에 저장해야한다.
-            // 나중에 Dto만들어서 변경
-
-            // firebase에서 에러나면 snackbar로 보여주는 것
-          } on FirebaseException catch (e) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(e.message!),
-              ),
-            );
           }
         },
         child: const SizedBox(

@@ -20,11 +20,11 @@ class CheckValidate {
       }
     }
 
-    return "";
+    return null;
   }
 
 // FocusNode: 사용자의 포커스를 관리
-  String passwordCheck({
+  String? passwordCheck({
     required String password,
     required FocusNode focusNode,
   }) {
@@ -41,10 +41,10 @@ class CheckValidate {
       }
     }
 
-    return "";
+    return null;
   }
 
-  String phoneCheck({
+  String? phoneCheck({
     required String phonenum,
     required FocusNode focusNode,
   }) {
@@ -60,6 +60,6 @@ class CheckValidate {
       }
     }
 
-    return "";
+    return null;
   }
 }
