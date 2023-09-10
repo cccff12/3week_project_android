@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cook/bagick/myappbar.dart';
 import 'package:cook/bagick/mybackground.dart';
+import 'package:cook/login.dart';
 import 'package:cook/modules/input_form_field.dart';
 import 'package:cook/modules/validate.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -137,8 +138,9 @@ class _LoginState extends State<Join> {
         ),
         // 버튼을 누르면 textformfield의 validator실행
         onPressed: () async {
-          _formKey.currentState?.validate();
-          if (_formKey.currentState?.validate() == null) {
+          // _formKey.currentState?.validate();
+          final isValid = _formKey.currentState?.validate();
+          if (isValid == true) {
             try {
               var result =
                   await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -166,6 +168,12 @@ class _LoginState extends State<Join> {
               Navigator.pop(context, result.user != null);
               await widget.updateAuthUser(result.user);
               Navigator.pop(context);
+              // 로그아웃 시키고
+              await FirebaseAuth.instance.signOut();
+              // 로그인페이지로 이동
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) =>
+                      Login(updateAuthUser: widget.updateAuthUser)));
               // 다른 회원정보는 fireStore에 저장해야한다.
               // 나중에 Dto만들어서 변경
 

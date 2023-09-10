@@ -52,7 +52,8 @@ class CheckValidate {
       focusNode.requestFocus();
       return "전화번호를 입력해주세요!";
     } else {
-      const pattern = r"^\d{3}-\d{3,4}-\d{4}$/";
+      // const pattern = r"^\d{3}-\d{3,4}-\d{4}$";
+      const pattern = r"^(\d{2,3})(\d{3,4})(\d{4})$";
       var regExp = RegExp(pattern);
       if (!regExp.hasMatch(phonenum)) {
         focusNode.requestFocus();
