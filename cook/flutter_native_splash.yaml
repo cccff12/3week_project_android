@@ -1,6 +1,8 @@
 flutter_native_splash:
   color: "#FFFFFF"
-  image: assets/splash.png
+  # 여기 파일에 사진 넣어야 함 넣고 flutter pub run flutter_native_splash:create명령어 실행
+
+  image: assets/splashimage.png
   text: "수동적인 요리사"
   font: assets/fonts/COOKIERUN_REGULAR.OTF
   fullscreen: true

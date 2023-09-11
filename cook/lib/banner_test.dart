@@ -35,16 +35,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        //title: Text('My Mobile App'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          color: Colors.grey,
-          onPressed: () {
-            // 뒤로가기 버튼 동작
-          },
-        ),
-      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -91,53 +81,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            Expanded(
+            const Expanded(
               flex: 4,
               child: Column(
-                children: [
-                  Expanded(
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(vertical: 8.0),
-                      padding: const EdgeInsets.all(8.0),
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        borderRadius:
-                            BorderRadius.circular(10.0), // 원하는 둥근 정도를 설정합니다.
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 2,
-                            blurRadius: 4,
-                            offset: const Offset(0, 2),
-                          ),
-                        ],
-                      ),
-                      child: const Text('2'),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(vertical: 8.0),
-                      padding: const EdgeInsets.all(8.0),
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        borderRadius:
-                            BorderRadius.circular(10.0), // 원하는 둥근 정도를 설정합니다.
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 2,
-                            blurRadius: 4,
-                            offset: const Offset(0, 2),
-                          ),
-                        ],
-                      ),
-                      child: const Text('2'),
-                    ),
-                  ),
-                ],
+                children: [],
               ),
             ),
           ],
@@ -149,9 +96,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget buildBanner(String text, int index) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.0), // 원하는 둥근 정도를 설정합니다.
-        color: Colors.blueGrey,
-      ),
+          borderRadius: BorderRadius.circular(10.0), // 원하는 둥근 정도를 설정합니다.
+          border: const Border.fromBorderSide(BorderSide(width: 1))),
       child: Center(child: Text(text)),
     );
   }
