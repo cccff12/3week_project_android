@@ -133,14 +133,15 @@ class _HomePage extends State<HomePage> {
                                       children: [
                                         // 아이콘 아래 2개
                                         InkWell(
-                                            onTap: () {
-                                              Navigator.of(context).push(
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          const CreateRecipe()));
-                                            },
-                                            child: Image.asset(
-                                                'images/Group22.png')),
+                                          onTap: () {
+                                            Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        const CreateRecipe()));
+                                          },
+                                          child:
+                                              Image.asset('images/Group22.png'),
+                                        ),
                                         const SizedBox(
                                           height: 10,
                                         ),

@@ -13,9 +13,9 @@ Widget maindrawer(
         children: [
           const UserAccountsDrawerHeader(
             currentAccountPicture: CircleAvatar(),
-            // Text("displayname : ${user?.displayName}") 회원가입에서 추가해 나중에 바꿔야 할듯
+// 나중에 db에서 가져와야 함
             accountName: Text("유저이름"),
-
+// 레벨은 아마 폐기
             accountEmail: Text("유저 레벨"),
             // 이부분은 나중에 추가해야 함
           ),
