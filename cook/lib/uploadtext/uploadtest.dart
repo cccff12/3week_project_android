@@ -1,22 +1,35 @@
-class asd {
-  firebase_storage.Reference ref = firebase_storage.FirebaseStorage.instance
-      .ref('images/defaultProfile.png');
-// or
-  firebase_storage.Reference ref = firebase_storage.FirebaseStorage.instance
-      .ref()
-      .child('images')
-      .child('defaultProfile.png');
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
+
+void main(List<String> args) {
+  FirebaseStorage storage = FirebaseStorage.instance;
+  Reference ref = storage.ref("test/text");
+  ref.putString("Hello World !!");
+
+  runApp(const Aaaa());
 }
 
-Future<void> listExample() async {
-  firebase_storage.ListResult result =
-      await firebase_storage.FirebaseStorage.instance.ref().listAll();
+class Aaaa extends StatelessWidget {
+  const Aaaa({super.key});
 
-  result.items.forEach((firebase_storage.Reference ref) {
-    print('Found file: $ref');
-  });
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: Aaaa(),
+    );
+  }
+}
 
-  result.prefixes.forEach((firebase_storage.Reference ref) {
-    print('Found directory: $ref');
-  });
+class Sdasd extends StatefulWidget {
+  const Sdasd({super.key});
+
+  @override
+  State<Sdasd> createState() => _MyWidgetState();
+}
+
+class _MyWidgetState extends State<Sdasd> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
 }
