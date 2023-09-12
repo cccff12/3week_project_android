@@ -51,6 +51,9 @@ class _LoginState extends State<Join> {
   String _phonenumbervalue = "";
   String _nicknamevalue = "";
 
+  String? currentUserUid;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -158,7 +161,8 @@ class _LoginState extends State<Join> {
                     // document는  uid로 만들어라
                     .doc(result.user!.uid)
                     .set({
-                  "email": result.user!.email,
+                  // "email": result.user!.email,
+                  "email": _emailValue,
                   "password": _passwordvalue,
                   "name": _namevalue,
                   "tel": _phonenumbervalue,

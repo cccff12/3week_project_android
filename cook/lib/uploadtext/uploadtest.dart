@@ -2,10 +2,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
 void main(List<String> args) {
-  FirebaseStorage storage = FirebaseStorage.instance;
-  Reference ref = storage.ref("test/text");
-  ref.putString("Hello World !!");
-
   runApp(const Aaaa());
 }
 
@@ -15,7 +11,7 @@ class Aaaa extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: Aaaa(),
+      home: Sdasd(),
     );
   }
 }
@@ -30,6 +26,8 @@ class Sdasd extends StatefulWidget {
 class _MyWidgetState extends State<Sdasd> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const Scaffold(
+      body: Column(),
+    );
   }
 }

@@ -4,7 +4,7 @@ PreferredSizeWidget MyAppBar() {
   return AppBar(
     // dawer 색 변경
     iconTheme: const IconThemeData(color: Colors.black),
-    backgroundColor: const Color.fromRGBO(255, 192, 203, 1),
+    backgroundColor: const Color.fromARGB(255, 255, 192, 203),
     title: Center(
       // 글자마다 색을 다르게 주기 위해 RichText를 사용했고
       //그 안에서 TextSpan을 2번 사용했다

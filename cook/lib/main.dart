@@ -137,7 +137,12 @@ class _HomePage extends State<HomePage> {
                                             Navigator.of(context).push(
                                                 MaterialPageRoute(
                                                     builder: (context) =>
-                                                        const CreateRecipe()));
+                                                        CreateRecipe(
+                                                          context,
+                                                          authUser: _authUser,
+                                                          updateAuthUser:
+                                                              updateAuthUser,
+                                                        )));
                                           },
                                           child:
                                               Image.asset('images/Group22.png'),
