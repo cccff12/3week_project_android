@@ -15,9 +15,8 @@ class CreateRecipe extends StatefulWidget {
   State<CreateRecipe> createState() => _CreateRecipeState();
 }
 
-User? user = FirebaseAuth.instance.currentUser;
-
 class _CreateRecipeState extends State<CreateRecipe> {
+  User? user = FirebaseAuth.instance.currentUser;
   // 콘트롤러
   final _onewordcontroller = TextEditingController();
   final _introductioncontroller = TextEditingController();
@@ -27,48 +26,48 @@ class _CreateRecipeState extends State<CreateRecipe> {
   // 키
   final _formKey = GlobalKey<FormState>();
 
-// input 박스에 입력해놓을 값을 임시로 저장하는 변수
+// 레시피 번호를 저장할 변수
+  int recipenum = 1;
 
+// input 박스에 입력해놓을 값을 임시로 저장하는 변수
   String _onewordvalue = "";
   String _introductionvalue = "";
   String _materialvalue = "";
   String _cookingmethodvalue = "";
 
-  void addDataToFirestore(String uid) {
+  void addDataToFirestore(String uid) async {
+    //   프로젝트와 연결된 Firestore 인스턴스를 가져오는 역할
     FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+    // 사용자 컬렉션안에
     CollectionReference userCollection = firestore.collection('users');
 
-    Map<String, dynamic> userData = {};
+    // 사용자 문서를 참조해서
+    DocumentReference userDocument = userCollection.doc(user!.uid);
+    // 레시피 컬렉션을 사용자 문서 내에 추가
+    CollectionReference recipeCollection = userDocument.collection('recipes');
 
-    // 사용자 컬렉션 내에 필드를 추가합니다.
-    userCollection.doc(uid).set(userData).then((value) {
-      print("데이터가 성공적으로 추가되었습니다.");
+    // 입력값을 필드에 추가
+    Map<String, dynamic> recipeData = {
+      'num': recipenum,
+      'uid': user!.uid,
+      'cookingmethod': _cookingmethodvalue,
+      'oneword': _onewordvalue,
+      'introduction': _introductionvalue,
+      'material': _materialvalue,
+    };
 
-      // 사용자 컬렉션 내에 서브컬렉션을 추가합니다.
-      CollectionReference recipeCollection =
-          userCollection.doc(uid).collection('recipes');
-
-      // _cookingmethodvalue를 필드로 추가합니다.
-      Map<String, dynamic> recipeData = {
-        'uid': user!.uid,
-        'cookingmethod': _cookingmethodvalue,
-        'oneword': _onewordvalue,
-        'introduction': _introductionvalue,
-        'material': _materialvalue,
-      };
-
-      recipeCollection.add(recipeData).then((value) {
-        print("레시피 데이터가 성공적으로 추가되었습니다.");
-      }).catchError((error) {
-        print("레시피 데이터 추가 중 오류 발생: $error");
-      });
+    // 레시피 문서를 레시피 컬렉션 내에 추가합니다.
+    recipeCollection.add(recipeData).then((value) {
+      print("레시피 데이터가 성공적으로 추가되었습니다.");
     }).catchError((error) {
-      print("데이터 추가 중 오류 발생: $error");
+      print("레시피 데이터 추가 중 오류 발생: $error");
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    recipenum = recipenum;
     return Scaffold(
       appBar: MyAppBar(),
       body: SingleChildScrollView(
@@ -126,6 +125,7 @@ class _CreateRecipeState extends State<CreateRecipe> {
                                 FirebaseFirestore.instance
                                     .collection("recipe")
                                     .doc();
+                                // Navigator.of(context).pop();
                               } else {
                                 // 사용자가 로그인되어 있지 않은 경우 처리
                                 Navigator.of(context).push(MaterialPageRoute(
@@ -175,3 +175,5 @@ class _CreateRecipeState extends State<CreateRecipe> {
     );
   }
 }
+
+void plud() {}
