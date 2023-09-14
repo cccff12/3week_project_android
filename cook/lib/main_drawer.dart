@@ -1,5 +1,5 @@
-import 'package:cook/login.dart';
-import 'package:cook/mypage.dart';
+import 'package:cook/page/login.dart';
+import 'package:cook/page/mypage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 

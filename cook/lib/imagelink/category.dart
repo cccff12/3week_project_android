@@ -1,7 +1,7 @@
 import 'package:cook/bagick/myappbar.dart';
 import 'package:cook/bagick/mybackground.dart';
 import 'package:cook/bagick/mytextfied.dart';
-import 'package:cook/list_page.dart';
+import 'package:cook/page/list_page.dart';
 import 'package:flutter/material.dart';
 
 class Category extends StatefulWidget {
