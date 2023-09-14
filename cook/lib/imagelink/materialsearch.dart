@@ -2,6 +2,7 @@ import 'package:cook/bagick/myappbar.dart';
 import 'package:cook/bagick/mybackground.dart';
 import 'package:cook/bagick/mytextfied.dart';
 import 'package:flutter/material.dart';
+import 'package:cook/detail_page.dart';
 
 class MaterialSearch extends StatefulWidget {
   const MaterialSearch({super.key});
@@ -27,6 +28,12 @@ class _MaterialSearchState extends State<MaterialSearch> {
               Column(
                 children: [
                   myTextField(),
+                  IconButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const Detail()));
+                      },
+                      icon: const Icon(Icons.abc_sharp))
                 ],
               )
             ]),

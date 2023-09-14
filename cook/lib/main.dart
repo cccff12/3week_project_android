@@ -4,6 +4,7 @@ import 'package:cook/bagick/mytextfied.dart';
 import 'package:cook/imagelink/category.dart';
 import 'package:cook/imagelink/create_recipe.dart';
 import 'package:cook/imagelink/materialsearch.dart';
+import 'package:cook/login.dart';
 import 'package:cook/main_drawer.dart';
 import 'package:cook/firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -113,10 +114,18 @@ class _HomePage extends State<HomePage> {
                                       children: [
                                         InkWell(
                                             onTap: () {
-                                              Navigator.of(context).push(
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          const Category()));
+                                              if (_authUser == null) {
+                                                Navigator.of(context).push(
+                                                    MaterialPageRoute(
+                                                        builder: (context) => Login(
+                                                            updateAuthUser:
+                                                                updateAuthUser)));
+                                              } else {
+                                                Navigator.of(context).push(
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            const Category()));
+                                              }
                                             },
                                             child: Image.asset(
                                                 'images/Group21.png')),
@@ -134,15 +143,25 @@ class _HomePage extends State<HomePage> {
                                         // 아이콘 아래 2개
                                         InkWell(
                                           onTap: () {
-                                            Navigator.of(context).push(
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        CreateRecipe(
-                                                          context,
-                                                          authUser: _authUser,
+                                            if (_authUser == null) {
+                                              Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                      builder: (context) => Login(
                                                           updateAuthUser:
-                                                              updateAuthUser,
-                                                        )));
+                                                              updateAuthUser)));
+                                            } else {
+                                              Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      CreateRecipe(
+                                                    context,
+                                                    authUser: _authUser,
+                                                    updateAuthUser:
+                                                        updateAuthUser,
+                                                  ),
+                                                ),
+                                              );
+                                            }
                                           },
                                           child:
                                               Image.asset('images/Group22.png'),
@@ -231,10 +250,6 @@ class _HomePage extends State<HomePage> {
                           children: [
                             for (int i = 0; i < 10; i++)
                               buildBanner("Banner${i + 1}", i)
-                            // buildBanner('Banner 1', 0),
-                            // buildBanner('Banner 2', 1),
-                            // buildBanner('Banner 3', 2),
-                            // buildBanner('Banner 4', 3),
                           ],
                         ),
                         Align(

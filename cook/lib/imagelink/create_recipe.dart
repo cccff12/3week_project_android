@@ -18,6 +18,7 @@ class CreateRecipe extends StatefulWidget {
 class _CreateRecipeState extends State<CreateRecipe> {
   User? user = FirebaseAuth.instance.currentUser;
   // 콘트롤러
+  final _categorycontroller = TextEditingController();
   final _onewordcontroller = TextEditingController();
   final _introductioncontroller = TextEditingController();
   final _materialcontroller = TextEditingController();
@@ -30,6 +31,7 @@ class _CreateRecipeState extends State<CreateRecipe> {
   int recipenum = 1;
 
 // input 박스에 입력해놓을 값을 임시로 저장하는 변수
+  String _categoryvalue = "";
   String _onewordvalue = "";
   String _introductionvalue = "";
   String _materialvalue = "";
@@ -38,10 +40,8 @@ class _CreateRecipeState extends State<CreateRecipe> {
   void addDataToFirestore(String uid) async {
     //   프로젝트와 연결된 Firestore 인스턴스를 가져오는 역할
     FirebaseFirestore firestore = FirebaseFirestore.instance;
-
     // 사용자 컬렉션안에
     CollectionReference userCollection = firestore.collection('users');
-
     // 사용자 문서를 참조해서
     DocumentReference userDocument = userCollection.doc(user!.uid);
     // 레시피 컬렉션을 사용자 문서 내에 추가
@@ -50,6 +50,7 @@ class _CreateRecipeState extends State<CreateRecipe> {
     // 입력값을 필드에 추가
     Map<String, dynamic> recipeData = {
       'num': recipenum,
+      'category': _categoryvalue,
       'uid': user!.uid,
       'cookingmethod': _cookingmethodvalue,
       'oneword': _onewordvalue,
@@ -86,7 +87,13 @@ class _CreateRecipeState extends State<CreateRecipe> {
                     Form(
                         child: Column(
                       children: [
-                        const Text("사진파일 넣을 곳"),
+                        createRecipeInput(
+                            helperText:
+                                "고기, 국, 면, 밥, 안주, 해장, 패스트푸드, 샐러드 - 중에 1택",
+                            controller: _categorycontroller,
+                            height: 10,
+                            hintText: "카테고리",
+                            setValue: (value) => _categoryvalue = value),
                         createRecipeInput(
                             controller: _onewordcontroller,
                             height: 50,
@@ -135,6 +142,7 @@ class _CreateRecipeState extends State<CreateRecipe> {
                             } catch (e) {
                               print("에러발생");
                             }
+                            Navigator.of(context).pop();
                           },
                           child: const Text("저장"),
                         )
@@ -154,12 +162,15 @@ class _CreateRecipeState extends State<CreateRecipe> {
   TextFormField createRecipeInput(
       {String? hintText,
       required int height,
+      String? helperText,
       required TextEditingController controller,
       required Function(String) setValue}) {
     return TextFormField(
       onChanged: (value) => setValue(value),
       textAlignVertical: TextAlignVertical.top,
       decoration: InputDecoration(
+        helperText: helperText,
+        helperStyle: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
         hintText: hintText,
         fillColor: Colors.white,
         filled: true,
@@ -175,5 +186,3 @@ class _CreateRecipeState extends State<CreateRecipe> {
     );
   }
 }
-
-void plud() {}
