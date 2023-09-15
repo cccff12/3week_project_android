@@ -1,7 +1,6 @@
 import 'package:cook/bagick/myappbar.dart';
 import 'package:cook/bagick/mybackground.dart';
-import 'package:cook/bagick/mytextfied.dart';
-import 'package:cook/imagelink/category.dart';
+import 'package:cook/imagelink/calendar%20.dart';
 import 'package:cook/imagelink/create_recipe.dart';
 import 'package:cook/imagelink/materialsearch.dart';
 import 'package:cook/page/login.dart';
@@ -10,10 +9,21 @@ import 'package:cook/firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+
 import 'package:url_launcher/url_launcher_string.dart';
+// void main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   Intl.defaultLocale = 'ko_KR';
+//   await initializeDateFormatting('ko_KR', 'Intl');
+//   // firebase와 연결
+//   await Firebase.initializeApp(
+//     options: DefaultFirebaseOptions.currentPlatform,
+//   );
+
+//   runApp(const MyApp());
+// }
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
   // firebase와 연결
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -97,7 +107,7 @@ class _HomePage extends State<HomePage> {
                 children: [
                   Column(
                     children: [
-                      myTextField(),
+                      // myTextField(),
                       // 2개의 Row를 묶은 Column
                       Column(
                         children: [
@@ -124,7 +134,7 @@ class _HomePage extends State<HomePage> {
                                                 Navigator.of(context).push(
                                                     MaterialPageRoute(
                                                         builder: (context) =>
-                                                            const Category()));
+                                                            Calendar()));
                                               }
                                             },
                                             child: Image.asset(
@@ -169,7 +179,7 @@ class _HomePage extends State<HomePage> {
                                         const SizedBox(
                                           height: 10,
                                         ),
-                                        const Text("레시피 작성"),
+                                        const Text("장바구니 작성하기"),
                                       ],
                                     ),
                                   ),
@@ -189,16 +199,12 @@ class _HomePage extends State<HomePage> {
                                     children: [
                                       // 아이콘 아래 2개
                                       InkWell(
-                                          onTap: () {
-                                            // Navigator.of(context).push(
-                                            //     MaterialPageRoute(
-                                            //         builder: (context) =>
-                                            //             const CookingUtensil()));
-
-                                            onButtonTap();
-                                          },
-                                          child: Image.asset(
-                                              'images/Group24.png')),
+                                        onTap: () {
+                                          onButtonTap();
+                                        },
+                                        child:
+                                            Image.asset('images/Group24.png'),
+                                      ),
                                       const SizedBox(
                                         height: 10,
                                       ),
@@ -223,7 +229,8 @@ class _HomePage extends State<HomePage> {
                                       const SizedBox(
                                         height: 10,
                                       ),
-                                      const Text("재료로 검색"),
+                                      const Text("장바구니 "
+                                          "전체확인"),
                                     ],
                                   ),
                                 ),

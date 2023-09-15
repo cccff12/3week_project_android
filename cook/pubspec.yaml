@@ -41,7 +41,7 @@ dependencies:
   firebase_storage: ^11.2.6
   permission_handler: ^11.0.0
   image_picker: ^1.0.4
-  
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:
@@ -66,7 +66,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-  # 파일 들어있는 폴더 확인
+    # 파일 들어있는 폴더 확인
     - assets/splash.png
     - assets/splashimage.png
     - images/Group21.png
