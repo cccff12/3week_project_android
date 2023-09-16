@@ -39,9 +39,9 @@ dependencies:
   cloud_firestore: ^4.9.1
   url_launcher: ^6.1.14
   firebase_storage: ^11.2.6
-  permission_handler: ^11.0.0
-  image_picker: ^1.0.4
-  intl: ^0.18.1
+  # permission_handler: ^11.0.0
+  # image_picker: ^1.0.4
+  # intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:

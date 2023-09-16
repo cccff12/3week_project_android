@@ -1,6 +1,5 @@
 import 'package:cook/bagick/myappbar.dart';
 import 'package:cook/bagick/mybackground.dart';
-import 'package:cook/imagelink/calendar%20.dart';
 import 'package:cook/imagelink/create_recipe.dart';
 import 'package:cook/imagelink/materialsearch.dart';
 import 'package:cook/page/login.dart';
@@ -11,10 +10,20 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'package:url_launcher/url_launcher_string.dart';
+
+void main() async {
+  // Intl.defaultLocale = 'ko_KR';
+  // await initializeDateFormatting('ko_KR', 'Intl');
+  // firebase와 연결
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  runApp(const MyApp());
+}
+
 // void main() async {
-//   WidgetsFlutterBinding.ensureInitialized();
-//   Intl.defaultLocale = 'ko_KR';
-//   await initializeDateFormatting('ko_KR', 'Intl');
 //   // firebase와 연결
 //   await Firebase.initializeApp(
 //     options: DefaultFirebaseOptions.currentPlatform,
@@ -22,15 +31,6 @@ import 'package:url_launcher/url_launcher_string.dart';
 
 //   runApp(const MyApp());
 // }
-
-void main() async {
-  // firebase와 연결
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-
-  runApp(const MyApp());
-}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -131,10 +131,10 @@ class _HomePage extends State<HomePage> {
                                                             updateAuthUser:
                                                                 updateAuthUser)));
                                               } else {
-                                                Navigator.of(context).push(
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            Calendar()));
+                                                // Navigator.of(context).push(
+                                                //     MaterialPageRoute(
+                                                //         builder: (context) =>
+                                                //             Calendar()));
                                               }
                                             },
                                             child: Image.asset(
