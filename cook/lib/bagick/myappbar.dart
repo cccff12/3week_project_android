@@ -11,21 +11,24 @@ PreferredSizeWidget MyAppBar() {
       child: Container(
         // padding줬어야 했는데 Center안에 padding을 넣을 수 없어
         // Container로 묶고 그 안에 패딩을 줌
-        padding: const EdgeInsets.only(right: 120),
+        padding: const EdgeInsets.only(right: 100),
         child: RichText(
-            text: const TextSpan(children: [
-          TextSpan(
-            text: "요리",
-            style: TextStyle(color: Colors.yellow, fontSize: 20),
+          text: const TextSpan(
+            children: [
+              TextSpan(
+                text: "장바구니",
+                style: TextStyle(color: Colors.lightGreen, fontSize: 20),
+              ),
+              TextSpan(
+                text: "를 작성해보세요",
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.black,
+                ),
+              ),
+            ],
           ),
-          TextSpan(
-            text: "를 시작해보세요",
-            style: TextStyle(
-              fontSize: 20,
-              color: Colors.black,
-            ),
-          ),
-        ])),
+        ),
       ),
     ),
 
