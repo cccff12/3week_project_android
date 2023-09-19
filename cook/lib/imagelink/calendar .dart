@@ -28,7 +28,6 @@
 //   }
 
 //   // List<String> _getEventsForDay(DateTime day) {
-//   //   // 여기에 해당 날짜에 대한 이벤트 목록을 가져오는 로직을 추가하세요.
 //   //   return [];
 //   // }
 

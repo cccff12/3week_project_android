@@ -12,8 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 void main() async {
-  // Intl.defaultLocale = 'ko_KR';
-  // await initializeDateFormatting('ko_KR', 'Intl');
   // firebase와 연결
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -22,15 +20,6 @@ void main() async {
 
   runApp(const MyApp());
 }
-
-// void main() async {
-//   // firebase와 연결
-//   await Firebase.initializeApp(
-//     options: DefaultFirebaseOptions.currentPlatform,
-//   );
-
-//   runApp(const MyApp());
-// }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -119,34 +108,6 @@ class _HomePage extends State<HomePage> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    // Container(
-                                    //   margin: const EdgeInsets.all(30),
-                                    //   child: Column(
-                                    //     children: [
-                                    //       InkWell(
-                                    //           onTap: () {
-                                    //             if (_authUser == null) {
-                                    //               Navigator.of(context).push(
-                                    //                   MaterialPageRoute(
-                                    //                       builder: (context) => Login(
-                                    //                           updateAuthUser:
-                                    //                               updateAuthUser)));
-                                    //             } else {
-                                    //               // Navigator.of(context).push(
-                                    //               //     MaterialPageRoute(
-                                    //               //         builder: (context) =>
-                                    //               //             Calendar()));
-                                    //             }
-                                    //           },
-                                    //           child: Image.asset(
-                                    //               'images/Group21.png')),
-                                    //       const SizedBox(
-                                    //         height: 10,
-                                    //       ),
-                                    //       const Text("카테고리"),
-                                    //     ],
-                                    //   ),
-                                    // ),
                                     Container(
                                       margin: const EdgeInsets.all(30),
                                       child: Column(
