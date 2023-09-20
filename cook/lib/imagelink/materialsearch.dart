@@ -148,7 +148,7 @@ class _MaterialSearchState extends State<MaterialSearch> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('레시피 삭제'),
-          content: const Text('정말로 이 레시피를 삭제하시겠습니까?'),
+          content: const Text('정말로 이 메모를 삭제하시겠습니까?'),
           actions: [
             TextButton(
               onPressed: () {

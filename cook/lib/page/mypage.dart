@@ -31,14 +31,14 @@ class _MyPageState extends State<MyPage> {
             SimpleDialog(
               title: const Text("마이페이지"),
               children: <Widget>[
-                Text("이메일 : ${_authUser?.email}"),
-                Text("uid : ${_authUser?.uid}"),
-                Text("displayname : ${_authUser?.displayName}"),
-                Text("마지막 로그인 : ${_authUser?.metadata.lastSignInTime}"),
-                Text("아이디 생성일 : ${_authUser?.metadata.creationTime}"),
-                Text("전화번호 : ${_authUser?.phoneNumber}"),
-                Text("사진 : ${_authUser?.photoURL}"),
-                const Text("여기부터 모든 정보"),
+                // Text("이메일 : ${_authUser?.email}"),
+                // Text("uid : ${_authUser?.uid}"),
+                // Text("displayname : ${_authUser?.displayName}"),
+                // Text("마지막 로그인 : ${_authUser?.metadata.lastSignInTime}"),
+                // Text("아이디 생성일 : ${_authUser?.metadata.creationTime}"),
+                // Text("전화번호 : ${_authUser?.phoneNumber}"),
+                // Text("사진 : ${_authUser?.photoURL}"),
+                // const Text("여기부터 모든 정보"),
                 Text("${_authUser!}")
               ],
             ),

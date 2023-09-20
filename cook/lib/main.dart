@@ -170,7 +170,7 @@ class _HomePage extends State<HomePage> {
                                         const SizedBox(
                                           height: 10,
                                         ),
-                                        const Text("요리기구"),
+                                        const Text("식자재 구매"),
                                       ],
                                     ),
                                   ),
