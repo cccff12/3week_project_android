@@ -1,0 +1,75 @@
+class Super {
+    Super() {
+        System.out.print("A");
+    }
+
+    Super(char x) {
+        System.out.print(x);
+    }
+}
+
+class Sub extends Super {
+    Sub() {
+        super();
+        System.out.print("B");
+    }
+
+    Sub(char x) {
+this();
+        System.out.print(x);
+    }
+}
+
+public class eduwill {
+    public static void main(String[] args) {
+        Super s1 = new Super('C');
+        Super s2 = new Sub('D');
+    }
+}
+
+답 CABD
+
+a = {'한국', '중국', '일본'}
+a.add('베트남')
+a.add('중국')
+a.remove('일본')
+a.update({'홍콩', '한국', '태국'})
+print(a)
+
+답 {'한국', '중국', '베트남', '홍콩', '태국'} 
+
+#include 
+ 
+int len(char*p);
+ 
+int main(){
+ 
+  char*p1 = "2022";
+  char*p2 = "202207";  
+  
+  int a = p1;
+  int b = p2;
+  
+  printf("%d", len(a) + len(b));
+ 
+}
+ 
+int len(char*p){
+  int r = 0;
+  while(*p != '\0'){
+    p++;
+    r++;
+  }
+return r;
+}
+답 10
+
+문자열은 C 언어에서 문자들의 배열로 표현됩니다. "2022"는 문자열로
+ "2", "0", "2", "2"로 구성되어 있습니다. 이때 p++는 포인터 p가 문자열의 
+다음 문자를 가리키도록 이동하는 연산을 수행합니다. 문자열을 배열로 생각하면
+ 이해하기 쉽습니다.
+
+처음에 포인터 p가 문자열 "2022"의 첫 번째 문자인 '2'를 가리키고 있습니다. 
+그런 다음 p++를 실행하면 포인터 p가 다음 문자 '0'을 가리키도록 이동합니다.
+ 다시 p++를 실행하면 '2'를 가리키도록 이동하고, 한 번 더 p++를 실행하면 '2'를 
+가리키도록 이동합니다. 이러한 방식으로 문자열을 하나씩 순차적으로 탐색할 수 있습니다.
